@@ -1,27 +1,33 @@
 package com.vmware.moviebase;
 
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+
 import static org.testng.Assert.*;
+
 public class MovieServiceTest {
+	private MovieService movieService;
 	
-	@Test
-	public void addTwoMoviesAndGetTheTotal(){
+	@BeforeMethod
+	public void setup(){
 		//subject under test
-		MovieService movieService = new MovieService("VMWare movie night");
+		movieService = new MovieService("VMWare movie night");	
+	}
+	@Test
+	public void addTwoMoviesAndGetTheTotal() throws Exception {
 		movieService.addMovie(new Movie("E.T. - The Extra Terrestrial"));
 		movieService.addMovie(new Movie("Wall-E"));
 		assertEquals(movieService.getCount(), 2);
 		
 	}
 	@Test
-	public void addOneMovieAndGetTheTotal(){
-		MovieService movieService = new MovieService("VMWare movie night");
+	public void addOneMovieAndGetTheTotal() throws Exception{
+		
 		movieService.addMovie(new Movie("Wall-E"));
 		assertEquals(movieService.getCount(), 1);
 	}
 	@Test
-	public void addTheTotalWithNoMovies(){
-		MovieService movieService = new MovieService("VMWare movie night");
+	public void addTheTotalWithNoMovies() throws Exception{
 		assertEquals(movieService.getCount(), 0);
 	}
 		
