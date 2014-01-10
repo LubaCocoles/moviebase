@@ -11,7 +11,7 @@ public class MovieServiceTest {
 	@BeforeMethod
 	public void setup(){
 		//subject under test
-		movieService = new MovieService("VMWare movie night");	
+	 movieService = new MovieService("VMWare movie night");	
 	}
 	@Test
 	public void addTwoMoviesAndGetTheTotal() throws Exception {
@@ -31,5 +31,16 @@ public class MovieServiceTest {
 		assertEquals(movieService.getCount(), 0);
 	}
 		
+	@Test
+	public void removeAMovieAndGetTheTotal(){
+		movieService.addMovie(new Movie("E.T. - The Extra Terrestrial"));
+		movieService.addMovie(new Movie("Wall-E"));
+		movieService.removeByName("Wall-E");
+		assertEquals(movieService.getCount(), 1);
+	}
 	
+	@Test
+	public void removeAMovieThatDoesntExist(){
+		
+	}
 }

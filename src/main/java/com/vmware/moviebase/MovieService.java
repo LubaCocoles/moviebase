@@ -17,4 +17,10 @@ private int count = 0;
 		return count;
 	}
 
+	public void removeByName(String name) {
+		// TODO Auto-generated method stub
+		count--;
+		
+	}
+
 }
