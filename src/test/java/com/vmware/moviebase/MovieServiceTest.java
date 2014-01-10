@@ -15,7 +15,9 @@ public class MovieServiceTest {
 	}
 	@Test
 	public void addOneMovieAndGetTheTotal(){
-		
+		MovieService movieService = new MovieService("VMWare movie night");
+		movieService.addMovie(new Movie("Wall-E"));
+		assertEquals(movieService.getCount(), 1);
 	}
 	@Test
 	public void addTheTotalWithNoMovies(){
