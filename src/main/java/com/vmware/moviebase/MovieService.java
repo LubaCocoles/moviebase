@@ -7,6 +7,7 @@ private int count = 0;
 	}
 
 	public void addMovie(Movie movie) {
+ 
 		count++;
 	}
 
