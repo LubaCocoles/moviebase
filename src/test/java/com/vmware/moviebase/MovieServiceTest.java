@@ -36,7 +36,7 @@ public class MovieServiceTest {
 		movieService.addMovie(new Movie("E.T. - The Extra Terrestrial"));
 		movieService.addMovie(new Movie("Wall-E"));
 		movieService.removeByName("Wall-E");
-		assertEquals(movieService.getCount(), 1);
+		assertEquals(movieService.getCount(), 0);
 	}
 	
 	@Test
