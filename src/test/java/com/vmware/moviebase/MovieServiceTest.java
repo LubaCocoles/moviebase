@@ -14,29 +14,40 @@ public class MovieServiceTest {
 	 movieService = new MovieService("VMWare movie night");	
 	}
 	@Test
-	public void addTwoMoviesAndGetTheTotal() throws Exception {
+	public void addTwoMoviesAndGetTheTotal() {
 		movieService.addMovie(new Movie("E.T. - The Extra Terrestrial"));
 		movieService.addMovie(new Movie("Wall-E"));
 		assertEquals(movieService.getCount(), 2);
 		
 	}
 	@Test
-	public void addOneMovieAndGetTheTotal() throws Exception{
+	public void addOneMovieAndGetTheTotal(){
 		
 		movieService.addMovie(new Movie("Wall-E"));
 		assertEquals(movieService.getCount(), 1);
 	}
 	@Test
-	public void addTheTotalWithNoMovies() throws Exception{
+	public void addTheTotalWithNoMovies(){
 		assertEquals(movieService.getCount(), 0);
 	}
 		
 	@Test
-	public void removeAMovieAndGetTheTotal(){
+	public void removeAMovieAndGetTheTotal() throws MovieException{
 		movieService.addMovie(new Movie("E.T. - The Extra Terrestrial"));
 		movieService.addMovie(new Movie("Wall-E"));
 		movieService.removeByName("Wall-E");
 		assertEquals(movieService.getCount(), 1);
+	}
+	
+	@Test
+	public void removeAMovieFromAnEmptyService(){
+		
+		try {
+		movieService.removeByName("Wall-E");
+		fail("Was expecting an exception in removeAMovieFromAnEmptyService");
+		}catch (MovieException e){
+			assertEquals(e.getMessage(), "There are no movies in the service");
+		}
 	}
 	
 	@Test
