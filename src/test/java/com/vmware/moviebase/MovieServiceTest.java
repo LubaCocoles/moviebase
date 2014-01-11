@@ -15,7 +15,7 @@ public class MovieServiceTest {
 	}
 
 	@Test
-	public void addTwoMoviesAndGetTheTotal() {
+	public void addTwoMoviesAndGetTheTotal() throws MovieException {
 		movieService.addMovie(new Movie("E.T. - The Extra Terrestrial"));
 		movieService.addMovie(new Movie("Wall-E"));
 		assertEquals(movieService.getCount(), 2);
@@ -23,7 +23,7 @@ public class MovieServiceTest {
 	}
 
 	@Test
-	public void addOneMovieAndGetTheTotal() {
+	public void addOneMovieAndGetTheTotal() throws MovieException {
 
 		movieService.addMovie(new Movie("Wall-E"));
 		assertEquals(movieService.getCount(), 1);
@@ -54,26 +54,42 @@ public class MovieServiceTest {
 	}
 
 	@Test
-	public void removeAMovieThatDoesntExist() {
+	public void removeAMovieThatDoesntExist() throws MovieException {
 		movieService.addMovie(new Movie("E.T. - The Extra Terrestrial"));
 		movieService.addMovie(new Movie("Wall-E"));
 		try {
 			movieService.removeByName("Titanic");
-			fail ("Was expecting an exception in removeAMovieThatDoesntExist");
+			fail("Was expecting an exception in removeAMovieThatDoesntExist");
 		} catch (MovieException e) {
-			assertEquals(e.getMessage(), "There is no movie with this title in the service");
+			assertEquals(e.getMessage(),
+					"There is no movie with this title in the service");
 		}
 
 	}
+
 	@Test
-	public void removeAMovieThatDoesntExist2() {
+	public void removeAMovieThatDoesntExist2() throws MovieException {
 		movieService.addMovie(new Movie("E.T. - The Extra Terrestrial"));
 		movieService.addMovie(new Movie("Wall-E"));
 		try {
 			movieService.removeByName("Casablanca");
-			fail ("Was expecting an exception in removeAMovieThatDoesntExist");
+			fail("Was expecting an exception in removeAMovieThatDoesntExist");
 		} catch (MovieException e) {
-			assertEquals(e.getMessage(), "There is no movie with this title in the service");
+			assertEquals(e.getMessage(),
+					"There is no movie with this title in the service");
 		}
+	}
+
+	@Test
+	public void solveTheBug2() {
+	
+		try {
+			movieService.addMovie(new Movie("Wall-E"));
+			movieService.addMovie(new Movie("Wall-E"));
+			fail("Was expecting an exception in solveTheBug2");
+		} catch (MovieException e) {
+			assertEquals(e.getMessage(),
+					"Movie already exists");
 		}
+	}
 }
